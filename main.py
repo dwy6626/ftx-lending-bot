@@ -1,32 +1,34 @@
 import os
-import argparse
+import base64
 
 
 from dotenv import load_dotenv
 import ccxt
 
 
-load_dotenv()
+def hello_pubsub(event, context):
+    """Triggered from a message on a Cloud Pub/Sub topic.
+    Args:
+         event (dict): Event payload.
+         context (google.cloud.functions.Context): Metadata for the event.
+    """
+    pubsub_message = base64.b64decode(event['data']).decode('utf-8')
+    print(pubsub_message)
 
-API_KEY = os.getenv('FTX_API')
-APY_SECRET = os.getenv('FTX_API_SECRET')
+    load_dotenv()
 
+    API_KEY = os.getenv('FTX_API')
+    APY_SECRET = os.getenv('FTX_API_SECRET')
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-a', '--account', help='set subaccount, by default it use main account', default=None)
-parser.add_argument('-c', '--coin', help='set coin to lend, default is USDT', default='USDT')
-parser.add_argument('-r', '--rate', help='set lowest lending hour rate', default=1e-5)  # ~ 5 %
-
-
-if __name__ == '__main__':
-    args = parser.parse_args()
+    subaccount = 'Lending Bot'
+    coin = 'USDT'
+    rate = 1e-5
 
     config = {
         'apiKey': API_KEY,
         'secret': APY_SECRET,
     }
 
-    subaccount = args.account
     if subaccount is not None:
         config['headers'] = { 'FTX-SUBACCOUNT': subaccount }
 
@@ -34,7 +36,6 @@ if __name__ == '__main__':
 
     # get balance
     balances = client.fetch_balance()
-    coin = args.coin
     for item in balances['info']['result']:
         if item['coin'] == coin:
             balance = item['total']
@@ -47,7 +48,7 @@ if __name__ == '__main__':
     body = {
         "coin": coin,
         "size": balance,
-        "rate": args.rate
+        "rate": rate
     }
     res = client.private_post_spot_margin_offers(body)
     if not res['success']:
