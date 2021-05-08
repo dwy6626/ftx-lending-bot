@@ -13,9 +13,9 @@ APY_SECRET = os.getenv('FTX_API_SECRET')
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-a', '--account', default=None)
-parser.add_argument('-c', '--coin', default='USDT')
-parser.add_argument('-r', '--rate', default=1e-5)  # ~ 5 %
+parser.add_argument('-a', '--account', help='set subaccount, by default it use main account', default=None)
+parser.add_argument('-c', '--coin', help='set coin to lend, default is USDT', default='USDT')
+parser.add_argument('-r', '--rate', help='set lowest lending hour rate', default=1e-5)  # ~ 5 %
 
 
 if __name__ == '__main__':
