@@ -1,2 +1,2 @@
 ccxt
-load_dotenv
+python-dotenv
