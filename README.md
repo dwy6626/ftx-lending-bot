@@ -1,7 +1,9 @@
 FTX Lending Bot
 ===
 
-Renew lending amount.
+Renew margin lending amount.
+
+![demo](/img/demo.png)
 
 ## Setup
 
