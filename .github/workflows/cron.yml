@@ -1,0 +1,35 @@
+# https://gist.github.com/Harrison-Dev/8f6a09cca85a8e7b2ea924657d6fd879
+name: FTX compound
+on:
+  schedule:
+    - cron: '57 * * * *'
+  workflow_dispatch:
+
+jobs:
+  start:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          # This path is specific to Ubuntu
+          path: ~/.cache/pip
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Renew margin lending amount
+        env:
+          FTX_API: ${{ secrets.FTX_API }}
+          FTX_API_SECRET: ${{ secrets.FTX_API_SECRET }}
+        run: python main.py -a "Lending Bot" -c "USDT" -r "3e-6"

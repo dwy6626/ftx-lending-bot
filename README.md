@@ -31,4 +31,12 @@ python main.py -a "My Sub-Account" -c "USDT" -r "1e-6"
 
 ## Automatically renew
 
-find a server, add this script to cronjob
+### Use GitHub Action
+
+- clone this repo
+- add `FTX_API` and `FTX_API_SECRET` to repo > settings > secret.
+- modify the sub-account, coin and lending rate in `.github/workflows/cron.yml`
+
+## Disclaimer
+
+Do not upload / commit your API key and secret to internet! Keep them in private.
