@@ -2,7 +2,7 @@
 name: FTX compound
 on:
   schedule:
-    - cron: '57 * * * *'
+    - cron: '1 * * * *'
   workflow_dispatch:
 
 jobs:
