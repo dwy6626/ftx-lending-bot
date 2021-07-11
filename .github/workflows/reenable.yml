@@ -14,4 +14,4 @@ jobs:
             -X PUT \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            $GITHUB_API_URL/$GITHUB_REPOSITORY/actions/workflows/cron.yml/enable
+            $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/cron.yml/enable
