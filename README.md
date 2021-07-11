@@ -37,6 +37,10 @@ python main.py -a "My Sub-Account" -c "USDT" -r "1e-6"
 - add `FTX_API` and `FTX_API_SECRET` to repo > settings > secret.
 - modify the sub-account, coin and lending rate in `.github/workflows/cron.yml`
 
+### Re-enable
+
+because scheduled workflow are automatically disabled after 60 days inactivity, there is another workflow `reenable.yml` run monthly to automatically re-enable the workflows
+
 ## Disclaimer
 
 Do not upload / commit your API key and secret to internet! Keep them in private.
