@@ -10,4 +10,4 @@ jobs:
     steps:
       - run: >
           curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/actions/workflows/cron.yml/enable
+              $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/workflows/cron.yml/enable
