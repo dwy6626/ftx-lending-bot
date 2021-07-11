@@ -7,7 +7,14 @@ on:
 jobs:
   re-enable:
     runs-on: ubuntu-latest
-    env:
-      API_ENDPOINT: https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/actions/workflows/cron.yml/enable
+    strategy:
+      matrix:
+        workflow: [cron.yml, reenable.yml]
     steps:
-      - run: 'curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{ env.API_ENDPOINT }}'
+      - run: >
+          curl \
+            -f \
+            -X PUT \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/${{ matrix.workflow }}/enable
