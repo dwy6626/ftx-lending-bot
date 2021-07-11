@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: >
-          curl -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/workflows/cron.yml/enable
+          curl -f -b -X PUT -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/workflows/cron.yml/enable
