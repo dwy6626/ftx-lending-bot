@@ -1,0 +1,18 @@
+name: Disable CronJob
+on:
+  workflow_dispatch:
+
+jobs:
+  disable:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workflow: [cron.yml, reenable.yml]
+    steps:
+      - run: >
+          curl \
+            -f \
+            -X PUT \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            $GITHUB_API_URL/repos/$GITHUB_REPOSITORY/actions/workflows/${{ matrix.workflow }}/disable
