@@ -5,6 +5,10 @@ Renew margin lending amount.
 
 ![demo](/img/demo.png)
 
+## Note for who want to fork this repo
+
+- I have change the default lending coin to USD in https://github.com/dwy6626/ftx-lending-bot/commit/ffc7f74a9138a4191677127f96d874bd44885952, there might be more changes on master branch in future. you can use the released version (currently is v1.1) which is more stable.
+
 ## Usage
 
 Show usage:
