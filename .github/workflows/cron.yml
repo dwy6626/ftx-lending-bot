@@ -32,4 +32,4 @@ jobs:
         env:
           FTX_API: ${{ secrets.FTX_API }}
           FTX_API_SECRET: ${{ secrets.FTX_API_SECRET }}
-        run: python main.py -a "Lending Bot" -c "USD" -r "1e-6"
+        run: python main.py -c "UST" -r "1e-6"
