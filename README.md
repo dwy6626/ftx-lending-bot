@@ -1,3 +1,10 @@
+(Archived) Farewell FTX.
+===
+
+![FhDdJpZakAEw81E](https://user-images.githubusercontent.com/31836528/200633079-ac34c1c1-624c-4591-9d5b-7db7bfb9ad50.jpeg)
+
+
+---
 FTX Lending Bot
 ===
 
